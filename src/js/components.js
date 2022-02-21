@@ -1,5 +1,12 @@
-//references
+import { todoList } from "../index";
+import { Todo } from "../import-export";
+
+
+//references in HTML
 const divTodoList = document.querySelector('.todo-list');
+const placeholderTodo = document.querySelector('.new-todo');
+
+
 
 
 export const createTodoDiv = ( todo ) => {
@@ -20,3 +27,18 @@ divTodoList.append(div.firstElementChild);
 
 return div.firstElementChild;
 }
+
+// events
+placeholderTodo.addEventListener('keyup', (event) => {
+  
+  if(event.keyCode === 13 && placeholderTodo.value.length > 0){
+   
+    const newTodo = new Todo( placeholderTodo.value );
+    todoList.newTodo( newTodo );
+    console.log( todoList );
+    createTodoDiv( newTodo );
+   
+    placeholderTodo.value = '';
+  }
+
+});
