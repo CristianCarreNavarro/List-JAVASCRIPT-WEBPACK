@@ -1,16 +1,17 @@
 import "./styles.css";
-import{Todo, TodoList} from "./class/import-export"
+import{ Todo, TodoList, createTodoDiv } from "./import-export.js"
 
 
 
 
-const task     = new Todo("Aprender JavaScript");
+
+const task     = new Todo("Aprender frfffidooooo");
 const todoList = new TodoList();
 
 todoList.newTodo( task );
 
-console.log(todoList);
-
+task.completed=false;
+createTodoDiv(task);
 
 
 /*
