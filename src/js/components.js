@@ -1,9 +1,9 @@
 import { todoList } from "../index";
-import { Todo } from "../import-export";
+import { Todo }     from "../import-export";
 
 
 //references in HTML
-const divTodoList = document.querySelector('.todo-list');
+const divTodoList     = document.querySelector('.todo-list');
 const placeholderTodo = document.querySelector('.new-todo');
 
 
@@ -21,8 +21,9 @@ const htmlTodo =`
 <input class="edit" value="Create a TodoMVC template">
 </li>
 `
-const div = document.createElement("div");
-div.innerHTML=htmlTodo;
+const div      = document.createElement("div");
+div.innerHTML  = htmlTodo;
+
 divTodoList.append(div.firstElementChild);
 
 return div.firstElementChild;
@@ -41,4 +42,24 @@ placeholderTodo.addEventListener('keyup', (event) => {
     placeholderTodo.value = '';
   }
 
+});
+
+divTodoList.addEventListener('click', (event) => {
+  
+console.log('click');
+console.log(event.target.localName);//input, label, button
+
+const elementName = event.target.localName;
+const elementTodo = event.target.parentElement.parentElement;
+const todoID      = elementTodo.getAttribute('data-id');
+
+console.log(elementTodo);
+console.log(todoID);
+
+if( elementName === 'input' ){
+
+  todoList.completedTodo( todoID );
+  elementTodo.classList.toggle('completed');
+}
+console.log(todoList);
 });
