@@ -3,33 +3,39 @@ import { Todo }     from "../import-export";
 
 
 //references in HTML
-const divTodoList     = document.querySelector('.todo-list');
-const placeholderTodo = document.querySelector('.new-todo');
-
+const divTodoList        = document.querySelector('.todo-list');
+const placeholderTodo    = document.querySelector('.new-todo');
+const buttonDelete       = document.querySelector('.clear-completed');
 
 
 
 export const createTodoDiv = ( todo ) => {
   
-const htmlTodo =`
-<li class= "${ (todo.completed) ? 'completed' : '' }" data-id="${(todo.id)}">
-<div class="view">
-  <input class="toggle" type="checkbox" ${(todo.completed)? "checked" : '' }>
-  <label>${ todo.task } </label>
-  <button class="destroy"></button>
-</div>
-<input class="edit" value="Create a TodoMVC template">
-</li>
-`
-const div      = document.createElement("div");
-div.innerHTML  = htmlTodo;
+ const htmlTodo =`
+   <li class= "${ (todo.completed) ? 'completed' : '' }" data-id="${(todo.id)}">
+     <div class="view">
+       <input class="toggle" type="checkbox" ${(todo.completed)? "checked" : '' }>
+       <label>${ todo.task } </label>
+       <button class="destroy"></button>
+     </div>
+     <input class="edit" value="Create a TodoMVC template">
+   </li>
+ `
+ const div      = document.createElement("div");
 
-divTodoList.append(div.firstElementChild);
+ div.innerHTML  = htmlTodo;
+
+ divTodoList.append(div.firstElementChild);
 
 return div.firstElementChild;
 }
 
-// events
+
+
+
+// Listeners
+
+//if you press ENTER add new TO DO
 placeholderTodo.addEventListener('keyup', (event) => {
   
   if(event.keyCode === 13 && placeholderTodo.value.length > 0){
@@ -44,22 +50,48 @@ placeholderTodo.addEventListener('keyup', (event) => {
 
 });
 
-divTodoList.addEventListener('click', (event) => {
-  
-console.log('click');
-console.log(event.target.localName);//input, label, button
-
+// if you press the input or label the TO DO goes Completed
+divTodoList.addEventListener('click', (event) => {  
+//console.log('click');
+//console.log(event.target.localName);//input, label, button
 const elementName = event.target.localName;
+
 const elementTodo = event.target.parentElement.parentElement;
 const todoID      = elementTodo.getAttribute('data-id');
+const input       = event.target.previousElementSibling;
+  
+   
+if( elementName =='button' ){ 
 
-console.log(elementTodo);
-console.log(todoID);
+  todoList.deleteTodo(todoID);
+  divTodoList.removeChild(elementTodo);
 
-if( elementName === 'input' ){
+}else {
 
   todoList.completedTodo( todoID );
   elementTodo.classList.toggle('completed');
+
+  if(input != null){
+
+  input.checked =! input.checked;   
+
+  }   
 }
-console.log(todoList);
+});
+
+
+// if you press the 'Borrar completados' all completeds goes deleted
+buttonDelete.addEventListener('click', () => {
+
+  todoList.deleteAllCompleted();
+for( let i = divTodoList.children.length-1; i >= 0; i --){
+
+  const element = divTodoList.children[i];
+
+  if (element.classList.contains('completed')){
+    
+    divTodoList.removeChild(element);
+  }
+}
+  
 });

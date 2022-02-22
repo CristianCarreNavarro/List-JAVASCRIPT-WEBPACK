@@ -10,10 +10,14 @@ export class TodoList {
   newTodo(todo) {
 
     this.todos.push(todo);
+
   }
 
 
   deleteTodo(id) {
+    
+    this.todos = this.todos.filter( todo => todo.id !=id)
+
 
     
   }
@@ -23,12 +27,11 @@ export class TodoList {
 
     for(const todo of this.todos){
 
-      console.log("id: "+id+" id todolist: "+todo.id);
-
       if(todo.id == id){
         
         todo.completedTodo = !todo.completedTodo;
         break;
+
       }
     }
 
@@ -36,6 +39,7 @@ export class TodoList {
 
   deleteAllCompleted(){
 
+    this.todos = this.todos.filter( todo => !todo.completed )
 
   }
 }
