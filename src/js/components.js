@@ -56,20 +56,20 @@ divTodoList.addEventListener('click', (event) => {
 //console.log(event.target.localName);//input, label, button
 const elementName = event.target.localName;
 
-const elementTodo = event.target.parentElement.parentElement;
-const todoID      = elementTodo.getAttribute('data-id');
+const elementLi   = event.target.parentElement.parentElement;
+const todoID      = elementLi.getAttribute('data-id');
 const input       = event.target.previousElementSibling;
   
    
 if( elementName =='button' ){ 
 
   todoList.deleteTodo(todoID);
-  divTodoList.removeChild(elementTodo);
+  divTodoList.removeChild(elementLi);
 
 }else {
 
   todoList.completedTodo( todoID );
-  elementTodo.classList.toggle('completed');
+  elementLi.classList.toggle('completed');
 
   if(input != null){
 
@@ -83,14 +83,19 @@ if( elementName =='button' ){
 // if you press the 'Borrar completados' all completeds goes deleted
 buttonDelete.addEventListener('click', () => {
 
-  todoList.deleteAllCompleted();
-for( let i = divTodoList.children.length-1; i >= 0; i --){
+  //console.log("sin pasar el filtro: ")
+  //console.log(todoList);
+ todoList.deleteAllCompleted();
+  /*console.log("pasado el filtro: ")
+  console.log(todoList);*/
 
-  const element = divTodoList.children[i];
+ for( let i = divTodoList.children.length-1; i >= 0; i --){
 
-  if (element.classList.contains('completed')){
+    const element = divTodoList.children[i];
+
+    if (element.classList.contains('completed')){
     
-    divTodoList.removeChild(element);
+      divTodoList.removeChild(element);
   }
 }
   

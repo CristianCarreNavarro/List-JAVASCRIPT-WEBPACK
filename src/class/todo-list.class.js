@@ -27,9 +27,16 @@ export class TodoList {
 
     for(const todo of this.todos){
 
+      console.log(id, todo.id)
+      console.log(todo);
       if(todo.id == id){
+
         
-        todo.completedTodo = !todo.completedTodo;
+        //si es true se convierte a false
+        todo.completed = !todo.completed;
+        
+        console.log("for despues: " )
+        console.log(this.todos);
         break;
 
       }
@@ -38,8 +45,10 @@ export class TodoList {
   }
 
   deleteAllCompleted(){
-
+    
+    
     this.todos = this.todos.filter( todo => !todo.completed )
-
+   console.log("deleteAllCompleted")
+    console.log(this.todos);
   }
 }
