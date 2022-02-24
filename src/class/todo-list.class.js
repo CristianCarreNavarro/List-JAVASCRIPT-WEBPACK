@@ -2,7 +2,7 @@ export class TodoList {
 
   constructor() {
 
-    this.todos = [];
+    this.loadLocalStorage();
   }
 
 
@@ -11,6 +11,8 @@ export class TodoList {
 
     this.todos.push(todo);
 
+    this.saveLocalStorage();
+
   }
 
 
@@ -18,7 +20,7 @@ export class TodoList {
     
     this.todos = this.todos.filter( todo => todo.id !=id)
 
-
+    this.saveLocalStorage();
     
   }
 
@@ -27,16 +29,12 @@ export class TodoList {
 
     for(const todo of this.todos){
 
-      console.log(id, todo.id)
-      console.log(todo);
       if(todo.id == id){
 
-        
         //si es true se convierte a false
         todo.completed = !todo.completed;
-        
-        console.log("for despues: " )
-        console.log(this.todos);
+
+        this.saveLocalStorage();
         break;
 
       }
@@ -44,11 +42,25 @@ export class TodoList {
 
   }
 
-  deleteAllCompleted(){
+  deleteAllCompleted(){  
     
-    
-    this.todos = this.todos.filter( todo => !todo.completed )
-   console.log("deleteAllCompleted")
-    console.log(this.todos);
+  this.todos = this.todos.filter( todo => !todo.completed )
+  this.saveLocalStorage();
+
   }
+
+
+  saveLocalStorage(){
+
+   localStorage.setItem('todo',JSON.stringify(this.todos));
+
+  }
+
+  loadLocalStorage(){
+
+   this.todos = (localStorage.getItem('todo')) 
+              ? JSON.parse(localStorage.getItem('todo')) 
+              : [];
+  }
+
 }
