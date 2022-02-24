@@ -1,6 +1,18 @@
 export class Todo {
 
 
+   static fromLocalStorage({id, task, completed, created}){
+
+        const tempTodo = new Todo( task) ;
+      
+        tempTodo.id      = id;
+        tempTodo.id      = completed;
+        tempTodo.created = created;
+      
+        return tempTodo;
+      
+        }
+
     constructor(task) {
 
         this.task      = task;
