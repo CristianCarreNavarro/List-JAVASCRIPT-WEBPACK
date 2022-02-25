@@ -3,7 +3,7 @@ export class Todo {
 
    static fromLocalStorage({id, task, completed, created}){
 
-        const tempTodo = new Todo( task) ;
+        const tempTodo = new Todo( task ) ;
       
         tempTodo.id      = id;
         tempTodo.id      = completed;
