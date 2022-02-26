@@ -60,7 +60,7 @@ const elementLi   = event.target.parentElement.parentElement;
 const todoID      = elementLi.getAttribute('data-id');
 const input       = event.target.previousElementSibling;
 
-   
+  
 if( elementName =='button' ){ 
 
   todoList.deleteTodo(todoID);
@@ -68,14 +68,12 @@ if( elementName =='button' ){
 
 }else {
 
+  if(input != null){ input.checked =! input.checked; }   
+
   todoList.completedTodo( todoID );
   elementLi.classList.toggle('completed');
-  console.log(input);
-  if(input != null){
 
-  input.checked =! input.checked;   
-console.log(input);
-  }   
+
 }
 });
 

@@ -1,13 +1,13 @@
 export class Todo {
 
 
-   static fromObjectTotoDO({id, task, completed, created}){
+   static fromObjectTotoDO({task, id, completed, created}){
 
         const tempTodo = new Todo( task ) ;
       
-        tempTodo.id      = id;
-        tempTodo.id      = completed;
-        tempTodo.created = created;
+        tempTodo.id         = id;
+        tempTodo.completed  = completed;
+        tempTodo.created    = created;
       
         return tempTodo;
       
