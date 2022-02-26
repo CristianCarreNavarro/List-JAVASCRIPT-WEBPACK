@@ -6,8 +6,8 @@ import { Todo }     from "../import-export";
 const divTodoList        = document.querySelector('.todo-list');
 const placeholderTodo    = document.querySelector('.new-todo');
 const buttonDelete       = document.querySelector('.clear-completed');
-
-
+const ulFilters          = document.querySelector('.filters');
+const anchorFilter       = document.querySelectorAll('.filtro');
 
 export const createTodoDiv = ( todo ) => {
   
@@ -59,7 +59,7 @@ const elementName = event.target.localName;
 const elementLi   = event.target.parentElement.parentElement;
 const todoID      = elementLi.getAttribute('data-id');
 const input       = event.target.previousElementSibling;
-  
+
    
 if( elementName =='button' ){ 
 
@@ -99,4 +99,47 @@ buttonDelete.addEventListener('click', () => {
   }
 }
   
+
+
+
+
+});
+
+
+ulFilters.addEventListener('click', (event) => {
+
+const filter = event.target.text;
+
+if( !filter ){ return; }
+  
+anchorFilter.forEach( elem => elem.classList.remove('selected'));
+event.target.classList.add( 'selected');
+
+
+
+for(const element of divTodoList.children){
+
+element.classList.remove('hidden');
+
+const completed = element.classList.contains('completado');
+
+switch( filter ){
+
+  case 'Pendientes':
+      if( completed ){
+      element.classList.add('hidden');
+      }
+      break;
+
+  case 'Completados':
+      if( !completed ){
+      element.classList.add('hidden');
+      }
+      break;
+}
+
+}
+
+
+
 });

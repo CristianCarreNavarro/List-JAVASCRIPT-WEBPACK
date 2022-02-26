@@ -2,14 +2,11 @@ import { Todo } from "./todo.class";
 
 export class TodoList {
 
- 
-
-  constructor() {
+ constructor() {
 
   this.loadLocalStorage();
 
   }
-
 
 
   newTodo(todo) {
@@ -19,7 +16,6 @@ export class TodoList {
     this.saveLocalStorage();
 
   }
-
 
   deleteTodo(id) {
     
@@ -53,7 +49,6 @@ export class TodoList {
   this.saveLocalStorage();
 
   }
-
 
   saveLocalStorage(){
 
