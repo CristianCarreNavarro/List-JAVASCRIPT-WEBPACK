@@ -51,9 +51,10 @@ export class TodoList {
   }
 
   saveLocalStorage(){
+console.log("hola")
+   localStorage.setItem('todo',JSON.stringify( this.todos ));
 
-   localStorage.setItem('todo',JSON.stringify(this.todos));
-
+console.log(this.todos);  
   }
 
   loadLocalStorage(){
@@ -62,7 +63,11 @@ export class TodoList {
               ? JSON.parse(localStorage.getItem('todo')) 
               : [];
 
-   this.todos = this.todos.map( Todo.fromLocalStorage );
+          
+   //to convert the Objects to todos because the JSON.parse load like and Object
+   this.todos = this.todos.map( Todo.fromObjectTotoDO );
+
+   
 
   }
 

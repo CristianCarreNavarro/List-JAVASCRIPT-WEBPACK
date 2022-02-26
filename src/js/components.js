@@ -70,11 +70,11 @@ if( elementName =='button' ){
 
   todoList.completedTodo( todoID );
   elementLi.classList.toggle('completed');
-
+  console.log(input);
   if(input != null){
 
   input.checked =! input.checked;   
-
+console.log(input);
   }   
 }
 });
@@ -105,7 +105,7 @@ buttonDelete.addEventListener('click', () => {
 
 });
 
-
+//if you press some button of the bottom you can see the to dos with some filters
 ulFilters.addEventListener('click', (event) => {
 
 const filter = event.target.text;

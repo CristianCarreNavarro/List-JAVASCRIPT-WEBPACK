@@ -1,7 +1,7 @@
 export class Todo {
 
 
-   static fromLocalStorage({id, task, completed, created}){
+   static fromObjectTotoDO({id, task, completed, created}){
 
         const tempTodo = new Todo( task ) ;
       
