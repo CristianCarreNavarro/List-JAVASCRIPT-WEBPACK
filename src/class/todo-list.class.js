@@ -30,11 +30,8 @@ export class TodoList {
 
     for(const todo of this.todos){
 
-      console.log("completedTodo" + todo.id +" = "+ id);
-
       if(todo.id == id){
         
-       
         //si es true se convierte a false
         todo.completed = !todo.completed;
 
@@ -54,10 +51,10 @@ export class TodoList {
   }
 
   saveLocalStorage(){
-console.log("hola")
+
    localStorage.setItem('todo', JSON.stringify( this.todos ) );
 
-console.log(this.todos);  
+
   }
 
   loadLocalStorage(){

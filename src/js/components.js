@@ -8,7 +8,9 @@ const placeholderTodo    = document.querySelector('.new-todo');
 const buttonDelete       = document.querySelector('.clear-completed');
 const ulFilters          = document.querySelector('.filters');
 const anchorFilter       = document.querySelectorAll('.filtro');
+const counterSpan        = document.querySelector('.todo-count');
 
+// creation of new Div with li
 export const createTodoDiv = ( todo ) => {
   
  const htmlTodo =`
@@ -30,16 +32,28 @@ export const createTodoDiv = ( todo ) => {
 return div.firstElementChild;
 }
 
+// modify the number of Span from Pendientes
+export const modSpanPendientes = () => {
+  
+ let counter =0;
+ 
+ for(const element of divTodoList.children){
 
+   if( !element.classList.contains('completed')){
+    counter++
+  ;}
+ }
+ counterSpan.firstChild.textContent = counter;
+}
 
+//-------------------- Listeners---------------------
 
-// Listeners
-
-//if you press ENTER add new TO DO
+// if you press ENTER add new TO DO
 placeholderTodo.addEventListener('keyup', (event) => {
   
   if(event.keyCode === 13 && placeholderTodo.value.length > 0){
-   
+
+    
     const newTodo = new Todo( placeholderTodo.value );
     todoList.newTodo( newTodo );
     console.log( todoList );
@@ -47,10 +61,10 @@ placeholderTodo.addEventListener('keyup', (event) => {
    
     placeholderTodo.value = '';
   }
-
+  modSpanPendientes();
 });
 
-// if you press the input or label the TO DO goes Completed
+// if you press the input or label of the one todo this goes Completed
 divTodoList.addEventListener('click', (event) => {  
 //console.log('click');
 //console.log(event.target.localName);//input, label, button
@@ -75,12 +89,14 @@ if( elementName =='button' ){
 
 
 }
+modSpanPendientes();
 });
 
 
-// if you press the 'Borrar completados' all completeds goes deleted
+// if you press the 'Borrar completados' all completed goes deleted
 buttonDelete.addEventListener('click', () => {
 
+  
   //console.log("sin pasar el filtro: ")
   //console.log(todoList);
  todoList.deleteAllCompleted();
@@ -97,9 +113,7 @@ buttonDelete.addEventListener('click', () => {
   }
 }
   
-
-
-
+modSpanPendientes();
 
 });
 
@@ -107,11 +121,12 @@ buttonDelete.addEventListener('click', () => {
 ulFilters.addEventListener('click', (event) => {
 
 const filter = event.target.text;
-
+console.log("filter: "+filter);
 if( !filter ){ return; }
-  
+
+//this is for to see the button selected
 anchorFilter.forEach( elem => elem.classList.remove('selected'));
-event.target.classList.add( 'selected');
+event.target.classList.add( 'selected' );
 
 
 
@@ -119,25 +134,32 @@ for(const element of divTodoList.children){
 
 element.classList.remove('hidden');
 
-const completed = element.classList.contains('completado');
+const completed = element.classList.contains('completed');
+
 
 switch( filter ){
 
   case 'Pendientes':
+    
       if( completed ){
       element.classList.add('hidden');
+      
       }
       break;
 
   case 'Completados':
+    
       if( !completed ){
       element.classList.add('hidden');
+      
       }
       break;
 }
 
+
 }
 
+modSpanPendientes();
 
 
 });
