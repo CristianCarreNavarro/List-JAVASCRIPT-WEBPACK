@@ -46,6 +46,7 @@ export class TodoList {
   deleteAllCompleted(){  
     
   this.todos = this.todos.filter( todo => !todo.completed )
+
   this.saveLocalStorage();
 
   }
@@ -53,7 +54,6 @@ export class TodoList {
   saveLocalStorage(){
 
    localStorage.setItem('todo', JSON.stringify( this.todos ) );
-
 
   }
 

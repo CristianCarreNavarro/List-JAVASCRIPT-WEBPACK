@@ -88,11 +88,9 @@ if( elementName =='button' ){
   todoList.completedTodo( todoID );
   elementLi.classList.toggle('completed');
 
-
 }
 modSpanPendientes();
 });
-
 
 // if you press the 'Borrar completados' all completed goes deleted
 buttonDelete.addEventListener('click', () => {
