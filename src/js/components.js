@@ -46,6 +46,8 @@ export const modSpanPendientes = () => {
  counterSpan.firstChild.textContent = counter;
 }
 
+
+
 //-------------------- Listeners---------------------
 
 // if you press ENTER add new TO DO
@@ -69,7 +71,6 @@ divTodoList.addEventListener('click', (event) => {
 //console.log('click');
 //console.log(event.target.localName);//input, label, button
 const elementName = event.target.localName;
-
 const elementLi   = event.target.parentElement.parentElement;
 const todoID      = elementLi.getAttribute('data-id');
 const input       = event.target.previousElementSibling;
