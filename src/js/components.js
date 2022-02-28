@@ -47,7 +47,6 @@ export const modSpanPendientes = () => {
 }
 
 
-
 //-------------------- Listeners---------------------
 
 // if you press ENTER add new TO DO
@@ -75,7 +74,7 @@ const elementLi   = event.target.parentElement.parentElement;
 const todoID      = elementLi.getAttribute('data-id');
 const input       = event.target.previousElementSibling;
 
-  
+
 if( elementName =='button' ){ 
 
   todoList.deleteTodo(todoID);
@@ -94,11 +93,10 @@ modSpanPendientes();
 
 // if you press the 'Borrar completados' all completed goes deleted
 buttonDelete.addEventListener('click', () => {
-
   
   //console.log("sin pasar el filtro: ")
   //console.log(todoList);
- todoList.deleteAllCompleted();
+  todoList.deleteAllCompleted();
   /*console.log("pasado el filtro: ")
   console.log(todoList);*/
 
@@ -126,7 +124,6 @@ if( !filter ){ return; }
 //this is for to see the button selected
 anchorFilter.forEach( elem => elem.classList.remove('selected'));
 event.target.classList.add( 'selected' );
-
 
 
 for(const element of divTodoList.children){
