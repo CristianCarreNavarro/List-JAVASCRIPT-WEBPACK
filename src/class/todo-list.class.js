@@ -8,7 +8,6 @@ export class TodoList {
 
   }
 
-
   newTodo( todo ) {
 
     this.todos.push( todo );

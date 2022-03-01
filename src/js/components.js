@@ -117,6 +117,7 @@ modSpanPendientes();
 //if you press some button of the bottom you can see the to dos with some filters
 ulFilters.addEventListener('click', (event) => {
 
+
 const filter = event.target.text;
 console.log("filter: "+filter);
 if( !filter ){ return; }
@@ -131,7 +132,6 @@ for(const element of divTodoList.children){
 element.classList.remove('hidden');
 
 const completed = element.classList.contains('completed');
-
 
 switch( filter ){
 
@@ -151,11 +151,8 @@ switch( filter ){
       }
       break;
 }
-
-
 }
 
 modSpanPendientes();
-
 
 });
